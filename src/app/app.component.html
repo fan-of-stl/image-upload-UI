@@ -1,10 +1,10 @@
+<!-- app.component.html -->
+
 <div class="image-upload-container">
   <div class="image-drop-container">
-    <div class="image-input-container">
-      <input type="file" (change)="onFileSelected($event)" />
-    </div>
-
+    <!-- Image Preview Container -->
     <div class="image-input-preview-container">
+      <!-- Display the image preview if available -->
       <img
         *ngIf="imagePreview"
         [src]="imagePreview"
@@ -12,20 +12,43 @@
         class="imagePreview"
       />
     </div>
+
+    <!-- File Input Container -->
+    <div class="image-input-container">
+      <div class="file-input-container">
+        <!-- File input label -->
+        <label for="fileInput" class="file-select-label">Select File</label>
+        <!-- Actual file input -->
+        <input
+          type="file"
+          id="fileInput"
+          class="fileSelectInput"
+          (change)="onFileSelected($event)"
+        />
+      </div>
+    </div>
   </div>
 
+  <!-- Display Message Container -->
   <div class="display-message-container">
+    <!-- Error Message Container -->
     <div class="error-message">
+      <!-- Display error message if image upload fails -->
       <p *ngIf="failedToUploadImage">{{ errorMessage }}</p>
     </div>
 
+    <!-- Success Message Container -->
     <div class="success-message">
+      <!-- Display success message if image upload is successful -->
       <p *ngIf="successfullyUploaded">{{ successMessage }}</p>
     </div>
   </div>
 
+  <!-- Image Upload Button Container -->
   <div class="image-upload-button-container">
+    <!-- Local Upload Button -->
     <button (click)="uploadToLocal()">Upload to local</button>
+    <!-- Cloud Upload Button -->
     <button (click)="uploadToS3()">Upload to Cloud</button>
   </div>
 </div>
